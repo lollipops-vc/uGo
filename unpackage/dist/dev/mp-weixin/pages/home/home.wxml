@@ -1,1 +1,1 @@
-<view></view>
+<view class="home-container"><view class="{{['search-box',(isFocus)?'focus':'']}}" focus="{{true}}"><input type="text" placeholder="搜索" data-event-opts="{{[['focus',[['e0',['$event']]]],['blur',[['e1',['$event']]]]]}}" bindfocus="__e" bindblur="__e"/><icon type="search" size="20"></icon></view></view>

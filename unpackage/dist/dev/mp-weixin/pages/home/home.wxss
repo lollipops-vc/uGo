@@ -1,0 +1,23 @@
+.home-container .search-box {
+  background-color: #fe2c4b;
+  padding: 20rpx;
+}
+.home-container .search-box input {
+  background-color: white;
+  padding-left: 50%;
+  border-radius: 10rpx;
+  transition: 0.3s;
+}
+.home-container .search-box icon {
+  position: absolute;
+  top: 25rpx;
+  left: 43%;
+  transition: 0.3s;
+}
+.home-container .search-box.focus input {
+  padding-left: 60rpx;
+}
+.home-container .search-box.focus icon {
+  left: 2%;
+}
+

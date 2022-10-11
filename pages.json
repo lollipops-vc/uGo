@@ -67,9 +67,9 @@
 			]
 		},
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
+		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarBackgroundColor": "#fe2c4b",
 		"backgroundColor": "#F8F8F8"
 	},
 	"uniIdRouter": {}
