@@ -99,6 +99,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (!_vm._isMounted) {
+    _vm.e0 = function($event, index) {
+      var _temp = arguments[arguments.length - 1].currentTarget.dataset,
+        _temp2 = _temp.eventParams || _temp["event-params"],
+        index = _temp2.index
+
+      var _temp, _temp2
+
+      _vm.activeIndex = index
+    }
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -152,16 +163,163 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
   components: {
     searchBar: searchBar },
 
   data: function data() {
-    return {};
-
+    return {
+      categoryList: [],
+      activeIndex: 0 };
 
   },
-  methods: {} };exports.default = _default;
+  onLoad: function onLoad() {
+    this.getList();
+  },
+  methods: {
+    getList: function getList() {var _this = this;
+      setTimeout(function () {
+        var data = [{
+          cat_id: 1,
+          cat_name: "大家电",
+          cat_pid: 0,
+          cat_level: 0,
+          cat_deleted: false,
+          cat_icon: "",
+          children: [{
+            cat_id: 3,
+            cat_name: "电视",
+            cat_pid: 1,
+            cat_level: 1,
+            cat_deleted: false,
+            cat_icon: "",
+            children: [{
+              cat_id: 5,
+              cat_name: "曲面电视",
+              cat_pid: 3,
+              cat_level: 2,
+              cat_deleted: false,
+              cat_icon: "../../static/floor/floor1.png" }] }] },
+
+
+        {
+          cat_id: 2,
+          cat_name: "大家电1",
+          cat_pid: 0,
+          cat_level: 0,
+          cat_deleted: false,
+          cat_icon: "",
+          children: [{
+            cat_id: 3,
+            cat_name: "电视",
+            cat_pid: 1,
+            cat_level: 1,
+            cat_deleted: false,
+            cat_icon: "",
+            children: [{
+              cat_id: 5,
+              cat_name: "曲面电视",
+              cat_pid: 3,
+              cat_level: 2,
+              cat_deleted: false,
+              cat_icon: "../../static/floor/floor1.png" }] }] },
+
+
+        {
+          cat_id: 3,
+          cat_name: "大家电2",
+          cat_pid: 0,
+          cat_level: 0,
+          cat_deleted: false,
+          cat_icon: "" },
+        {
+          cat_id: 4,
+          cat_name: "大家电3",
+          cat_pid: 0,
+          cat_level: 0,
+          cat_deleted: false,
+          cat_icon: "" },
+        {
+          cat_id: 5,
+          cat_name: "大家电4",
+          cat_pid: 0,
+          cat_level: 0,
+          cat_deleted: false,
+          cat_icon: "" },
+        {
+          cat_id: 6,
+          cat_name: "大家电5",
+          cat_pid: 0,
+          cat_level: 0,
+          cat_deleted: false,
+          cat_icon: "" },
+        {
+          cat_id: 7,
+          cat_name: "大家电6",
+          cat_pid: 0,
+          cat_level: 0,
+          cat_deleted: false,
+          cat_icon: "" },
+        {
+          cat_id: 8,
+          cat_name: "大家电7",
+          cat_pid: 0,
+          cat_level: 0,
+          cat_deleted: false,
+          cat_icon: "" },
+        {
+          cat_id: 9,
+          cat_name: "大家电8",
+          cat_pid: 0,
+          cat_level: 0,
+          cat_deleted: false,
+          cat_icon: "" },
+        {
+          cat_id: 10,
+          cat_name: "大家电9",
+          cat_pid: 0,
+          cat_level: 0,
+          cat_deleted: false,
+          cat_icon: "" },
+        {
+          cat_id: 11,
+          cat_name: "大家电10",
+          cat_pid: 0,
+          cat_level: 0,
+          cat_deleted: false,
+          cat_icon: "" },
+        {
+          cat_id: 12,
+          cat_name: "大家电11",
+          cat_pid: 0,
+          cat_level: 0,
+          cat_deleted: false,
+          cat_icon: "" }];
+
+        _this.categoryList = data;
+      }, 1000);
+    } } };exports.default = _default;
 
 /***/ }),
 

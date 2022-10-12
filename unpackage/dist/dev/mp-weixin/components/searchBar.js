@@ -20,10 +20,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   if (!_vm._isMounted) {
     _vm.e0 = function($event) {
-      _vm.isFocus = true
-    }
-
-    _vm.e1 = function($event) {
       _vm.isFocus = false
     }
   }
@@ -60,7 +56,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -74,7 +70,15 @@ var _default =
       isFocus: false };
 
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    focusHandler: function focusHandler() {
+      this.isFocus = true;
+      //跳转页面
+      uni.navigateTo({
+        url: "/pages/search/search" });
+
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

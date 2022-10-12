@@ -1,6 +1,6 @@
 <template>
 	<view class="search-box" focus :class="{focus:isFocus}">
-		<input @focus="isFocus=true" @blur='isFocus=false' type="text" placeholder="搜索" />
+		<input @focus="focusHandler" @blur='isFocus=false' type="text" placeholder="搜索" />
 		<icon type="search" size="20"></icon>
 	</view>
 </template>
@@ -13,7 +13,13 @@
 			}
 		},
 		methods: {
-			
+			focusHandler(){
+				this.isFocus=true;
+				//跳转页面
+				uni.navigateTo({
+					url:"/pages/search/search"
+				})
+			}
 		}
 	}
 </script>
