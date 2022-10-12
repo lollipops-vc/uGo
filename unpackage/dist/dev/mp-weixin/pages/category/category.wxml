@@ -1,1 +1,1 @@
-<view></view>
+<view class="category-container"><search-bar vue-id="9d275500-1" bind:__l="__l"></search-bar><view class="bottom"><scroll-view class="left" scroll-y="true"></scroll-view><scroll-view class="right" scroll-y="true"></scroll-view></view></view>

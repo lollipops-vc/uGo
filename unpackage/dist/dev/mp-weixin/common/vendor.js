@@ -9225,6 +9225,35 @@ function normalizeComponent (
 }
 
 
+/***/ }),
+/* 12 */
+/*!************************************************************!*\
+  !*** D:/weixinPro/Hbuilder/workSpace/uGo/utils/request.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = _default; //基地址
+var BaseURL = 'https://www.pjy';
+
+function _default(url, method, data) {
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      url: BaseURL + url,
+      method: method,
+      data: data,
+      success: function success(res) {
+        //异常判断
+        if (res.data.meta.status !== 200) {
+          resolve(res.data.message);
+        }
+      } });
+
+  });
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
 /***/ })
 ]]);
 //# sourceMappingURL=../../.sourcemap/mp-weixin/common/vendor.js.map

@@ -1,6 +1,7 @@
 .home-container .search-box {
   background-color: #fe2c4b;
   padding: 20rpx;
+  position: relative;
 }
 .home-container .search-box input {
   background-color: white;
@@ -11,13 +12,68 @@
 .home-container .search-box icon {
   position: absolute;
   top: 25rpx;
-  left: 43%;
+  left: 42%;
   transition: 0.3s;
 }
 .home-container .search-box.focus input {
   padding-left: 60rpx;
 }
 .home-container .search-box.focus icon {
-  left: 2%;
+  left: 4%;
+}
+.home-container .swiper-image {
+  width: 100%;
+}
+.home-container .nav-box {
+  height: 194rpx;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20rpx;
+}
+.home-container .nav-box image {
+  width: 128rpx;
+  height: 140rpx;
+}
+.home-container .floor-box .header {
+  background-color: #f4f4f4;
+  padding: 20rpx;
+}
+.home-container .floor-box .header image {
+  width: 1280rpx;
+  height: 100rpx;
+}
+.home-container .floor-box .bottom {
+  display: flex;
+  padding-left: 20rpx;
+}
+.home-container .floor-box .bottom > image {
+  width: 232rpx;
+  height: 386rpx;
+  margin-right: 10rpx;
+}
+.home-container .floor-box .bottom .right {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+.home-container .floor-box .bottom .right image {
+  width: 223rpx;
+  height: 188rpx;
+  margin-right: 10rpx;
+}
+.home-container .to-top {
+  position: fixed;
+  right: 20rpx;
+  bottom: 40rpx;
+  width: 120rpx;
+  height: 120rpx;
+  background-color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+  border-radius: 50%;
+}
+.home-container .to-top text {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  display: block;
 }
 

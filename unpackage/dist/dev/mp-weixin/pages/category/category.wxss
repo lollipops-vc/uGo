@@ -1,0 +1,21 @@
+.category-container {
+  position: relative;
+  height: 100vh;
+}
+.category-container .bottom {
+  top: 85rpx;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: skyblue;
+  display: flex;
+}
+.category-container .bottom .left {
+  width: 200rpx;
+  background-color: pink;
+}
+.category-container .bottom .right {
+  flex: 1;
+  background-color: orange;
+}
+
