@@ -1,7 +1,7 @@
 //基地址
 const BaseURL='https://www.pjy';
 
-export default function(url,method,data){
+export default function({url,method,data}){
 	return new Promise((resolve,reject)=>{
 		uni.request({
 			url:BaseURL+url,

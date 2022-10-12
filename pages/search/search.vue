@@ -1,11 +1,7 @@
 <template>
 	<view class="search-container">
 		<!-- 顶部 -->
-		<view class="search-box">
-			<icon type="search" size="20"></icon>
-			<input type="text" v-model="query" @confirm='addHistory' placeholder="请输入你想要的商品">
-			<button type="default" v-show="query.length" @tap='cancel'>取消</button>		
-		</view>
+		<searchBox v-model="query" @confirm='addHistory' @cancel='cancel()'></searchBox>
 		<!-- 底部 -->
 		<view class="history-box">
 			<view class="top">
@@ -13,14 +9,18 @@
 				<icon @tap='clear' type="clear"></icon>
 			</view>
 			<view class="bottom">
-				<view v-for="(item,index) in history" :key="index">{{item}}</view>
+				<view v-for="(item,index) in history" :key="index" @tap="clickHistory(item)">{{item}}</view>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	import searchBox from "../../components/searchBox.vue"
 	export default {
+		components:{
+			searchBox
+		},
 		data() {
 			return {
 				query:'',
@@ -31,7 +31,16 @@
 			const history = uni.getStorageSync('history');
 			this.history=history||[]
 		},
+		onShow() {
+			this.query='';
+			const history = uni.getStorageSync('history');
+			this.history=history||[]
+		},
 		methods: {
+			clickHistory(item){
+				this.query=item;
+				this.goResult()
+			},
 			cancel(){
 				this.query=''
 			},
@@ -44,11 +53,17 @@
 				if(this.history.length>10){
 					this.history.shift();
 				}
-				uni.setStorageSync('history',this.history)
+				uni.setStorageSync('history',this.history);
+				this.goResult()
 			},
 			clear(){
 				this.history=[];
 				uni.clearStorageSync('history')
+			},
+			goResult(){
+				uni.navigateTo({
+					url:`../searchResult/searchResult?query=${this.query}`
+				})
 			}
 		}
 	}
@@ -56,36 +71,7 @@
 
 <style lang="less">
 	.search-container{
-		.search-box{
-			height: 120rpx;
-			background-color: #eeeeee;
-			padding: 30rpx 20rpx 30rpx 10rpx;
-			box-sizing: border-box;
-			position: relative;
-			display: flex;
-			justify-content: space-between;
-			icon{
-				position: absolute;
-				top: 38rpx;
-				left: 30rpx;
-			}
-			input{
-				background-color: white;
-				padding-left: 70rpx;
-				border-radius: 4rpx;
-				margin-right: 20rpx;
-				flex:1;
-				height: 60rpx;
-			}
-			button{
-				width: 160rpx;
-				height: 60rpx;
-				text-align: center;
-				line-height: 60rpx;
-				border-radius: 4rpx;
-			}
-		}
-		.history-box{
+			.history-box{
 			padding: 25rpx 30rpx 0 20rpx;
 			.top{
 				display: flex;

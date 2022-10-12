@@ -1,0 +1,84 @@
+.search-result-container {
+  padding-top: 186rpx;
+}
+.search-result-container .search-box {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.search-result-container .filter-box {
+  display: flex;
+  height: 100rpx;
+  border-bottom: 1rpx solid #dddddd;
+  box-sizing: border-box;
+  background-color: white;
+  position: fixed;
+  width: 100%;
+  top: 102rpx;
+}
+.search-result-container .filter-box > view {
+  flex: 1;
+  text-align: center;
+  line-height: 100rpx;
+}
+.search-result-container .filter-box > view.active {
+  color: #ff2d4a;
+}
+.search-result-container .filter-box > view:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-result-container .filter-box > view .arrow-box {
+  margin-left: 10rpx;
+}
+.search-result-container .filter-box > view .arrow {
+  width: 0;
+  height: 0;
+  border-left: 8rpx solid transparent;
+  border-right: 8rpx solid transparent;
+}
+.search-result-container .filter-box > view .arrow.up {
+  border-bottom: 12rpx solid #cccccc;
+  margin-bottom: 10rpx;
+}
+.search-result-container .filter-box > view .arrow.up.active {
+  border-bottom-color: #666;
+}
+.search-result-container .filter-box > view .arrow.down {
+  border-top: 12rpx solid #cccccc;
+}
+.search-result-container .filter-box > view .arrow.down.active {
+  border-top-color: #666;
+}
+.search-result-container .result-box .item {
+  display: flex;
+  padding: 20rpx;
+}
+.search-result-container .result-box .item image {
+  width: 200rpx;
+  height: 200rpx;
+  margin-right: 20rpx;
+}
+.search-result-container .result-box .item .right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.search-result-container .result-box .item .right .title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.search-result-container .result-box .item .right .price {
+  color: #ff2d4a;
+  font-size: 24rpx;
+}
+.search-result-container .result-box .item .right .price text {
+  font-size: 40rpx;
+}
+

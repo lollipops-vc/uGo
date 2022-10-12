@@ -36,7 +36,25 @@
 			}
 
 		}
-	],
+	    ,{
+            "path" : "pages/searchResult/searchResult",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/detail/detail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"tabBar": {
 		"selectedColor": "red",
 		"list": [{

@@ -1,6 +1,6 @@
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],[
-/* 0 */,
-/* 1 */
+(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],{
+
+/***/ 1:
 /*!************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js ***!
   \************************************************************/
@@ -2537,7 +2537,167 @@ uni$1;exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 2)))
 
 /***/ }),
-/* 2 */
+
+/***/ 11:
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode, /* vue-cli only */
+  components, // fixed by xxxxxx auto components
+  renderjs // fixed by xxxxxx renderjs
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // fixed by xxxxxx auto components
+  if (components) {
+    if (!options.components) {
+      options.components = {}
+    }
+    var hasOwn = Object.prototype.hasOwnProperty
+    for (var name in components) {
+      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
+        options.components[name] = components[name]
+      }
+    }
+  }
+  // fixed by xxxxxx renderjs
+  if (renderjs) {
+    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
+      this[renderjs.__module] = this
+    });
+    (options.mixins || (options.mixins = [])).push(renderjs)
+  }
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ 12:
+/*!************************************************************!*\
+  !*** D:/weixinPro/Hbuilder/workSpace/uGo/utils/request.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = _default; //基地址
+var BaseURL = 'https://www.pjy';
+
+function _default(_ref) {var url = _ref.url,method = _ref.method,data = _ref.data;
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      url: BaseURL + url,
+      method: method,
+      data: data,
+      success: function success(res) {
+        //异常判断
+        if (res.data.meta.status !== 200) {
+          resolve(res.data.message);
+        }
+      } });
+
+  });
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 2:
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
   \***********************************/
@@ -2567,7 +2727,8 @@ module.exports = g;
 
 
 /***/ }),
-/* 3 */
+
+/***/ 3:
 /*!*************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-i18n/dist/uni-i18n.es.js ***!
   \*************************************************************/
@@ -3030,7 +3191,8 @@ function resolveLocaleChain(locale) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 2)))
 
 /***/ }),
-/* 4 */
+
+/***/ 4:
 /*!******************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!
   \******************************************************************************************/
@@ -9083,7 +9245,8 @@ internalMixin(Vue);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ 2)))
 
 /***/ }),
-/* 5 */
+
+/***/ 5:
 /*!******************************************************!*\
   !*** D:/weixinPro/Hbuilder/workSpace/uGo/pages.json ***!
   \******************************************************/
@@ -9093,167 +9256,30 @@ internalMixin(Vue);
 
 
 /***/ }),
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */
-/*!**********************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \**********************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode, /* vue-cli only */
-  components, // fixed by xxxxxx auto components
-  renderjs // fixed by xxxxxx renderjs
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // fixed by xxxxxx auto components
-  if (components) {
-    if (!options.components) {
-      options.components = {}
-    }
-    var hasOwn = Object.prototype.hasOwnProperty
-    for (var name in components) {
-      if (hasOwn.call(components, name) && !hasOwn.call(options.components, name)) {
-        options.components[name] = components[name]
-      }
-    }
-  }
-  // fixed by xxxxxx renderjs
-  if (renderjs) {
-    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
-      this[renderjs.__module] = this
-    });
-    (options.mixins || (options.mixins = [])).push(renderjs)
-  }
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-/* 12 */
-/*!************************************************************!*\
-  !*** D:/weixinPro/Hbuilder/workSpace/uGo/utils/request.js ***!
-  \************************************************************/
+/***/ 75:
+/*!********************************************************!*\
+  !*** D:/weixinPro/Hbuilder/workSpace/uGo/utils/key.js ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = _default; //基地址
-var BaseURL = 'https://www.pjy';
+Object.defineProperty(exports, "__esModule", { value: true });exports.KEY = void 0; // 历史记录
+var KEY = 'history';exports.KEY = KEY;
 
-function _default(url, method, data) {
-  return new Promise(function (resolve, reject) {
-    uni.request({
-      url: BaseURL + url,
-      method: method,
-      data: data,
-      success: function success(res) {
-        //异常判断
-        if (res.data.meta.status !== 200) {
-          resolve(res.data.message);
-        }
-      } });
+/***/ }),
 
-  });
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+/***/ 79:
+/*!******************************************************************************!*\
+  !*** D:/weixinPro/Hbuilder/workSpace/uGo/pages/searchResult/searchList.json ***!
+  \******************************************************************************/
+/*! exports provided: message, meta, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"message\":{\"total\":423,\"pagenum\":\"1\",\"goods\":[{\"goods_id\":57396,\"cat_id\":999,\"goods_name\":\"紫米ZMI 小米QC3.0快充车充 5V2.4A双USB智能输出 一拖二手机平板通用汽车充电器 AP821 银色\",\"goods_price\":69,\"goods_number\":100,\"goods_weight\":100,\"goods_big_logo\":\"http://image1.suning.cn/uimg/b2c/newcatentries/0000000000-000000000740439998_1_800x800.jpg\",\"goods_small_logo\":\"http://image1.suning.cn/uimg/b2c/newcatentries/0000000000-000000000740439998_1_400x400.jpg\",\"add_time\":1516663006,\"upd_time\":1516663006,\"hot_mumber\":0,\"is_promote\":false,\"cat_one_id\":962,\"cat_two_id\":981,\"cat_three_id\":999},{\"goods_id\":57224,\"cat_id\":993,\"goods_name\":\"70迈小米行车记录仪智能后视镜导航行车记录仪云镜测速一体机 8.88英寸大屏幕 官方标配\",\"goods_price\":1299,\"goods_number\":100,\"goods_weight\":100,\"goods_big_logo\":\"http://image2.suning.cn/uimg/b2c/newcatentries/0000000000-000000000719098452_2_800x800.jpg\",\"goods_small_logo\":\"http://image2.suning.cn/uimg/b2c/newcatentries/0000000000-000000000719098452_2_400x400.jpg\",\"add_time\":1516662412,\"upd_time\":1516662412,\"hot_mumber\":0,\"is_promote\":false,\"cat_one_id\":1480,\"cat_two_id\":1481,\"cat_three_id\":993},{\"goods_id\":57219,\"cat_id\":993,\"goods_name\":\"70迈小米智能行车记录仪 高清夜视大广角 WiFi无线互联 隐藏式安装\",\"goods_price\":199,\"goods_number\":100,\"goods_weight\":100,\"goods_big_logo\":\"http://image4.suning.cn/uimg/b2c/newcatentries/0000000000-000000000861260464_2_800x800.jpg\",\"goods_small_logo\":\"http://image4.suning.cn/uimg/b2c/newcatentries/0000000000-000000000861260464_2_400x400.jpg\",\"add_time\":1516662395,\"upd_time\":1516662395,\"hot_mumber\":0,\"is_promote\":false,\"cat_one_id\":1480,\"cat_two_id\":1481,\"cat_three_id\":993},{\"goods_id\":56873,\"cat_id\":986,\"goods_name\":\"金免贝贝jintubeib拉运车载手机支架汽车用出风口手机座导航仪支架三星苹果小米通用升级版出风口\",\"goods_price\":37,\"goods_number\":100,\"goods_weight\":100,\"goods_big_logo\":\"http://image5.suning.cn/uimg/b2c/newcatentries/0070166234-000000000630980467_1_800x800.jpg\",\"goods_small_logo\":\"http://image5.suning.cn/uimg/b2c/newcatentries/0070166234-000000000630980467_1_400x400.jpg\",\"add_time\":1516661046,\"upd_time\":1516661046,\"hot_mumber\":0,\"is_promote\":false,\"cat_one_id\":962,\"cat_two_id\":965,\"cat_three_id\":986},{\"goods_id\":56847,\"cat_id\":986,\"goods_name\":\"汽车用出风口手机支架 车载iphone苹果小米三星卡扣式手机架座 卡扣插式手机支架可伸缩 黑色\",\"goods_price\":15,\"goods_number\":100,\"goods_weight\":100,\"goods_big_logo\":\"http://image3.suning.cn/uimg/b2c/newcatentries/0070134345-000000000177931208_1_800x800.jpg\",\"goods_small_logo\":\"http://image3.suning.cn/uimg/b2c/newcatentries/0070134345-000000000177931208_1_400x400.jpg\",\"add_time\":1516660954,\"upd_time\":1516660954,\"hot_mumber\":0,\"is_promote\":false,\"cat_one_id\":962,\"cat_two_id\":965,\"cat_three_id\":986},{\"goods_id\":56841,\"cat_id\":986,\"goods_name\":\"麦芽汽车用出风口手机支架 车载iphone苹果小米三星卡扣式手机架座 卡扣插式手机支架可伸缩 蓝色\",\"goods_price\":15,\"goods_number\":100,\"goods_weight\":100,\"goods_big_logo\":\"http://image2.suning.cn/uimg/b2c/newcatentries/0070134345-000000000176315927_1_800x800.jpg\",\"goods_small_logo\":\"http://image2.suning.cn/uimg/b2c/newcatentries/0070134345-000000000176315927_1_400x400.jpg\",\"add_time\":1516660934,\"upd_time\":1516660934,\"hot_mumber\":0,\"is_promote\":false,\"cat_one_id\":962,\"cat_two_id\":965,\"cat_three_id\":986},{\"goods_id\":56473,\"cat_id\":977,\"goods_name\":\"风帆（sail） Q1 充电宝，适用苹果华为小米移动充电 汽车应急启动电源 电瓶救援搭电宝 多功能移动电源\",\"goods_price\":288,\"goods_number\":100,\"goods_weight\":100,\"goods_big_logo\":\"http://image1.suning.cn/uimg/b2c/newcatentries/0070079613-000000000139863838_1_800x800.jpg\",\"goods_small_logo\":\"http://image1.suning.cn/uimg/b2c/newcatentries/0070079613-000000000139863838_1_400x400.jpg\",\"add_time\":1516659404,\"upd_time\":1516659404,\"hot_mumber\":0,\"is_promote\":false,\"cat_one_id\":962,\"cat_two_id\":965,\"cat_three_id\":977},{\"goods_id\":52308,\"cat_id\":831,\"goods_name\":\"英吉利婴儿小米米粉AD钙铁锌婴幼儿宝宝营养米粉宝宝米糊辅食1段\",\"goods_price\":69,\"goods_number\":100,\"goods_weight\":100,\"goods_big_logo\":\"http://image1.suning.cn/uimg/b2c/newcatentries/0070163977-000000000123097252_1_800x800.jpg\",\"goods_small_logo\":\"http://image1.suning.cn/uimg/b2c/newcatentries/0070163977-000000000123097252_1_400x400.jpg\",\"add_time\":1516638191,\"upd_time\":1516638191,\"hot_mumber\":0,\"is_promote\":false,\"cat_one_id\":709,\"cat_two_id\":814,\"cat_three_id\":831},{\"goods_id\":52299,\"cat_id\":831,\"goods_name\":\"英吉利米粉婴儿米粉米糊婴幼儿AD钙铁锌小米米粉宝宝辅食营养米粉\",\"goods_price\":24,\"goods_number\":100,\"goods_weight\":100,\"goods_big_logo\":\"http://image4.suning.cn/uimg/b2c/newcatentries/0070163977-000000000123097476_1_800x800.jpg\",\"goods_small_logo\":\"http://image4.suning.cn/uimg/b2c/newcatentries/0070163977-000000000123097476_1_400x400.jpg\",\"add_time\":1516638155,\"upd_time\":1516638155,\"hot_mumber\":0,\"is_promote\":false,\"cat_one_id\":709,\"cat_two_id\":814,\"cat_three_id\":831},{\"goods_id\":52298,\"cat_id\":831,\"goods_name\":\"英吉利婴儿小米粉DHA鱼肉蔬菜宝宝营养3段米粉婴儿三段婴儿米粉\",\"goods_price\":69,\"goods_number\":100,\"goods_weight\":100,\"goods_big_logo\":\"http://image3.suning.cn/uimg/b2c/newcatentries/0070163977-000000000123096520_1_800x800.jpg\",\"goods_small_logo\":\"http://image3.suning.cn/uimg/b2c/newcatentries/0070163977-000000000123096520_1_400x400.jpg\",\"add_time\":1516638149,\"upd_time\":1516638149,\"hot_mumber\":0,\"is_promote\":false,\"cat_one_id\":709,\"cat_two_id\":814,\"cat_three_id\":831}]},\"meta\":{\"msg\":\"获取成功\",\"status\":200}}");
 
 /***/ })
-]]);
+
+}]);
 //# sourceMappingURL=../../.sourcemap/mp-weixin/common/vendor.js.map

@@ -5,15 +5,8 @@
       "list": [
         {
           "name": "",
-          "pathName": "pages/category/category",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "pages/search/search",
-          "query": "",
+          "pathName": "pages/searchResult/searchResult",
+          "query": "query=大米",
           "launchMode": "default",
           "scene": null
         }

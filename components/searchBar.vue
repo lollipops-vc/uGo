@@ -1,7 +1,7 @@
 <template>
 	<view class="search-box" focus :class="{focus:isFocus}">
 		<input @focus="focusHandler" @blur='isFocus=false' type="text" placeholder="搜索" />
-		<icon type="search" size="20"></icon>
+		<icon type="search" size="18"></icon>
 	</view>
 </template>
 
