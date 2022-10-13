@@ -6,16 +6,16 @@
 		</view>
 		<view class="full" v-else>
 			<!-- 地址 -->
-			<view class="address-box" @tap="chooseAddress">
+			<view class="address-box">
 				<view>
 					<text class="label">收货人:</text>
-					<text class="content">{{addressInfo.userName}}</text>
-					<text class="phone">{{addressInfo.telNumber}}</text>
+					<text class="content">苏</text>
+					<text class="phone">18888888888</text>
 					<text class="arrow">></text>
 				</view>
 				<view>
 					<text class="label">收货地址:</text>
-					<text class="content">{{address}}</text>
+					<text class="content">广东省广州市天河区</text>
 				</view>
 				<image src="/static/images/cart_border@2x.png" mode=""></image>
 			</view>
@@ -27,8 +27,7 @@
 			<!-- 商品列表 -->
 			<view class="goods-list">
 				<view class="goods-item" v-for="(item, index) in cartList" :key="index">
-					<text class="iconfont" @tap="toggleCheck(item,index)"
-						:class="[item.isChecked?'icon-checked':' icon-uncheck']"></text>
+					<text class="iconfont" @tap="toggleCheck(item,index)" :class="[item.isChecked?'icon-checked':' icon-uncheck']"></text>
 					<image :src="item.goods_small_logo" alt="" />
 					<view class="right">
 						<text class="text-line2">{{item.goods_name}}</text>
@@ -48,9 +47,9 @@
 				</view>
 			</view>
 			<view class="account">
-				<view class="select-all" @tap="toggeleCheckALl">
-					<text class="iconfont" :class="[isCheckAll?'icon-checked':' icon-uncheck']"></text>
-					<text >全选</text>
+				<view class="select-all">
+					<text class="iconfont icon-uncheck"></text>
+					<text>全选</text>
 				</view>
 				<view class="price-wrapper">
 					<view class="price">
@@ -68,16 +67,14 @@
 </template>
 <script>
 	import {
-		mapState,mapMutations
+		mapState
 	} from 'vuex'
-	import {ADDRESSKEY} from '../../utils/key.js'
 	export default {
 		data() {
 			return {
 				// 购物车是否为空
 				isEmpty: true,
 				cartList: [],
-				addressInfo:uni.getStorageSync(ADDRESSKEY)||{},
 			};
 		},
 		onShow() {
@@ -87,78 +84,43 @@
 		},
 		computed: {
 			...mapState(['goodsList']),
-			address(){
-				const {provinceName,cityName,countyName,detailInfo}=this.addressInfo
-				if(provinceName){
-					return provinceName+cityName+countyName+detailInfo
-				}else{
-					return ''
-				}
-			},
-			isCheckAll: {
-				get() {
-					return this.cartList.every(v => v.isChecked)
-				},
-				// 为了让计算属性可以赋值 必须实现set
-				// 形参 就是赋的值
-				set(value) {
-					this.cartList.forEach(v=>{
-						v.isChecked = value;
-					})
-				}
-
-			},
 			totalPrice() {
 				let totalPrice = 0
 				this.cartList.forEach(v => {
-					if(v.isChecked){
-						totalPrice += (v.num * v.goods_price)
-					}
+					totalPrice += (v.num * v.goods_price)
 				})
 				return totalPrice
 			},
 			totalNum() {
 				let totalNum = 0
 				this.cartList.forEach(v => {
-					if(v.isChecked){
-						totalNum += v.num
-					}
+					totalNum += v.num
 				})
 				return totalNum
 			},
 		},
 		methods: {
-			...mapMutations(['REFRESHCART']),
-			chooseAddress(){
-				uni.chooseAddress({
-					success: (res) => {
-						this.addressInfo= res;
-						uni.setStorageSync(ADDRESSKEY,this.addressInfo)
-					}
-				})
-			},
-			toggeleCheckALl(){
-				this.isCheckAll = !this.isCheckAll;
-			},
-			toggleCheck(item, index) {
+			toggleCheck(item,index){
 				item.isChecked = !item.isChecked;
+				console.log(`item`,item)
 				this.cartList[index].isChecked = item.isChecked;
+				// this.$forceUpdate()
 			},
-			add(item) {
+			add(item){
 				item.num++
 			},
-			sub(item, index) {
-				if (item.num === 1) {
+			sub(item,index){
+				if(item.num===1){
 					uni.showModal({
-						title: '提示',
-						content: '是否删除',
-						success: (res) => {
-							if (res.confirm) {
-								this.cartList.splice(index, 1)
+						title:'提示',
+						content:'是否删除',
+						success:(res)=>{
+							if(res.confirm){
+								this.cartList.splice(index,1)
 							}
 						}
 					})
-				} else {
+				}else{
 					item.num--
 				}
 			},
@@ -169,20 +131,19 @@
 							goods_name: "海尔Haier Q7 负离子车载空气净化器 除异味烟味甲醛PM2.5 负离子氧吧 智能除菌净化 红色",
 							goods_price: 588,
 							goods_small_logo: "http://image2.suning.cn/uimg/b2c/newcatentries/0070069826-000000000135563442_1_400x400.jpg",
-							isChecked: false,
-							num: 1
+							item.c
+							num:1
 						},
 						{
 							goods_id: 395,
 							goods_name: "洛玛 汽车车衣车罩 加厚防晒隔热车套外罩牛津布 福特麦柯斯 探险者 福特Mustang 福克斯RS 征服者 黑色",
 							goods_price: 168,
 							goods_small_logo: "http://image2.suning.cn/uimg/b2c/newcatentries/0070125000-000000000167731487_1_400x400.jpg",
-							isChecked: false,
-							num: 1
+							num:1
 						}
 					]
 					//接口会吧加入购物车的传给后台，，这里先自己拼接下
-					data = [...data, ...this.goodsList]
+					data=[...data,...this.goodsList]
 					this.cartList = data.map(v => {
 						const mergeObj = this.goodsList.find(item => {
 							return v.goods_id === item.goods_id
@@ -194,14 +155,6 @@
 
 					})
 				}, 100)
-			}
-		},
-		watch:{
-			cartList:{
-				handler(val,oldVal){
-					this.REFRESHCART(this.cartList)
-				},
-				deep:true
 			}
 		},
 	};

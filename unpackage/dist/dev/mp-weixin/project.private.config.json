@@ -5,8 +5,15 @@
       "list": [
         {
           "name": "",
-          "pathName": "pages/searchResult/searchResult",
-          "query": "query=大米",
+          "pathName": "pages/login/login",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/me/me",
+          "query": "",
           "launchMode": "default",
           "scene": null
         }

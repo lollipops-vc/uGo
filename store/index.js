@@ -8,13 +8,26 @@ Vue.use(Vuex);//vue的插件机制
 const store = new Vuex.Store({
 	state:{//存放状态
 		// 购物车上商品数据
-		goodsList:uni.getStorageSync(CARTKEY)||[]
+		goodsList:uni.getStorageSync(CARTKEY)||[],
+		userInfo:{}
 	},
 	mutations:{
+		SETUSERINFO(state,userInfo){
+			state.userInfo = userInfo
+		},
+		REFRESHCART(state,cartList){
+			// state.goodsList = cartList.map(v=>{
+			// 	const {goods_id,num,isChecked} = v
+			// 	return {
+			// 		goods_id,num,isChecked
+			// 	}
+			// })
+			state.goodsList = cartList
+		},
 		ADD2CART(state,goods){
 			const {goodsList} = state
 			const index = goodsList.findIndex(v=>{
-				return v.goods_id===goods_id
+				return v.goods_id===goods.goods_id
 			})
 			if(index===-1){
 				goodsList.push({
@@ -25,7 +38,9 @@ const store = new Vuex.Store({
 			}else{
 				goodsList[index].num++
 			}
-			console.log(`购物车`,goodsList)
+			uni.showToast({
+				title:'添加成功'
+			})
 		}
 	}
 })

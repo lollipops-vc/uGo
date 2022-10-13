@@ -1,0 +1,112 @@
+.me-container {
+  background-color: #f4f4f4;
+  padding-bottom: 40rpx;
+  font-size: 14px;
+}
+.me-container .iconfont {
+  font-size: 40rpx;
+}
+.me-container .header {
+  height: 360rpx;
+  background-color: #fe2c4b;
+  padding-top: 110rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.me-container .header .portrait {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 68rpx;
+}
+.me-container .header .portrait image {
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+}
+.me-container .header view {
+  color: #fff;
+  margin-top: 20rpx;
+}
+.me-container .content {
+  margin: -28rpx 18rpx 0;
+  color: #333;
+}
+.me-container .content .favo {
+  display: flex;
+  color: #666;
+  background-color: #fff;
+  height: 120rpx;
+  padding: 0 32rpx;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.me-container .content .favo view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 30rpx;
+}
+.me-container .content .favo .num {
+  color: #999;
+  margin-bottom: 4rpx;
+}
+.me-container .content .order-detail {
+  margin-top: 20rpx;
+  background-color: #fff;
+}
+.me-container .content .order-detail .title {
+  height: 88rpx;
+  line-height: 88rpx;
+  padding-left: 30rpx;
+  border-bottom: 1rpx solid #ddd;
+  font-size: 20px;
+  justify-content: flex-start;
+  font-size: 36rpx;
+}
+.me-container .content .order-detail view {
+  display: flex;
+  justify-content: space-evenly;
+  height: 200rpx;
+  align-items: center;
+}
+.me-container .content .order-detail view view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.me-container .content .order-detail view view .iconfont {
+  color: #eb4450;
+  font-size: 80rpx;
+}
+.me-container .content .address {
+  margin-top: 20rpx;
+  background-color: #fff;
+  padding-left: 30rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+}
+.me-container .content .others {
+  margin-top: 20rpx;
+  background-color: #fff;
+}
+.me-container .content .others view view {
+  height: 86rpx;
+  line-height: 86rpx;
+  border-bottom: 1rpx solid #ddd;
+  margin: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.me-container .content .others view view .right {
+  color: #999;
+}
+.me-container .content .others view view:last-child {
+  border: none;
+}
+

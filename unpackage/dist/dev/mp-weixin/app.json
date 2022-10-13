@@ -6,7 +6,8 @@
     "pages/me/me",
     "pages/search/search",
     "pages/searchResult/searchResult",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/login/login"
   ],
   "subPackages": [],
   "window": {
