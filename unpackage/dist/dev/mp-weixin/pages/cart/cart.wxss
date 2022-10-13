@@ -1,0 +1,171 @@
+.cart-container {
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+.cart-container .empty {
+  text-align: center;
+}
+.cart-container .empty text {
+  font-size: 200rpx;
+  display: block;
+  margin-bottom: 20rpx;
+}
+.cart-container .iconfont {
+  font-size: 44rpx;
+}
+.cart-container .address-box {
+  padding-left: 15rpx;
+  padding-right: 20rpx;
+  position: relative;
+  height: 230rpx;
+}
+.cart-container .address-box > view {
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  justify-content: space-between;
+}
+.cart-container .address-box > view .label {
+  margin-right: 20rpx;
+}
+.cart-container .address-box > view .arrow {
+  color: gray;
+  margin-left: 50rpx;
+}
+.cart-container .address-box > view .content {
+  text-align: left;
+  flex: 1;
+}
+.cart-container .address-box image {
+  width: 750rpx;
+  height: 15rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.cart-container .title {
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  padding-left: 20rpx;
+}
+.cart-container .title text:first-child {
+  margin-right: 10rpx;
+}
+.cart-container .goods-list {
+  border-top: 1rpx solid #ddd;
+}
+.cart-container .goods-list .goods-item {
+  height: 210rpx;
+  padding: 15rpx;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+.cart-container .goods-list .goods-item .iconfont {
+  color: #eb4450;
+  margin: 0 30rpx;
+}
+.cart-container .goods-list .goods-item image {
+  width: 160rpx;
+  height: 160rpx;
+}
+.cart-container .goods-list .goods-item .right-box {
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #ddd;
+}
+.cart-container .goods-list .goods-item .right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0 20rpx 0 18rpx;
+}
+.cart-container .goods-list .goods-item .right .text-line2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.cart-container .goods-list .goods-item .right .btm {
+  display: flex;
+  margin-top: 40rpx;
+  justify-content: space-between;
+}
+.cart-container .goods-list .goods-item .right .btm .price {
+  color: #eb4450;
+  display: flex;
+}
+.cart-container .goods-list .goods-item .right .btm .price > text {
+  font-size: 24px;
+}
+.cart-container .goods-list .goods-item .right .btm .goods-num {
+  display: flex;
+  align-items: center;
+}
+.cart-container .goods-list .goods-item .right .btm .goods-num button {
+  width: 60rpx;
+  height: 50rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4rpx solid #666;
+}
+.cart-container .goods-list .goods-item .right .btm .goods-num text {
+  margin: 0 30rpx;
+}
+.cart-container .goods-list {
+  position: absolute;
+  bottom: 98rpx;
+  top: 320rpx;
+  width: 100%;
+  overflow: auto;
+  padding-bottom: 60rpx;
+  background-color: #f4f4f4;
+}
+.cart-container .account {
+  height: 98rpx;
+  border-bottom: 1rpx solid #ddd;
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  align-items: center;
+}
+.cart-container .account .iconfont {
+  color: #eb4450;
+  margin: 0 30rpx;
+}
+.cart-container .account .account-btn {
+  width: 230rpx;
+  height: 98rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background-color: #eb4450;
+}
+.cart-container .account .select-all {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.cart-container .account .select-all .price-wrapper {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+}
+.cart-container .account .price {
+  margin-right: 20rpx;
+}
+.cart-container .account .price .num {
+  color: #eb4450;
+}
+.cart-container .account .price .info {
+  color: #999;
+}
+

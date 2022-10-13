@@ -5,6 +5,23 @@
 .swiper {
   height: 720rpx;
 }
+.attr-box {
+  padding: 10rpx;
+}
+.attr-box .tr {
+  border: 1rpx solid #d1d1d1;
+  display: flex;
+}
+.attr-box .tr .td {
+  flex: 1;
+  height: 90rpx;
+  text-align: center;
+  line-height: 90rpx;
+  font-size: 24rpx;
+}
+.attr-box .tr .td:first-child {
+  border-right: 1rpx solid #d1d1d1;
+}
 .swiper-img {
   width: 100%;
   height: 720rpx;

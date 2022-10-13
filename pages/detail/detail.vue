@@ -1,217 +1,278 @@
 <template>
-  <view class="wrapper">
+	<view class="wrapper">
 
-    <swiper class="swiper"
-            indicator-dots
-            autoplay
-            circular
-            indicator-color="#ccc"
-            indicator-active-color="#fff">
-      <block v-for="(item, index) in 10"
-             :key="index">
-        <swiper-item>
-          <image class="swiper-img"
-                 src="http://image1.suning.cn/uimg/b2c/newcatentries/0000000000-000000000740439998_1_200x200.jpg"></image>
-        </swiper-item>
-      </block>
-    </swiper>
-    <!-- 商品信息 -->
-    <view class="goods-info">
-      <view class="price">￥100</view>
-      <view class="name-favo">
-        <view class="name">紫米ZMI 小米QC3.0快充车充 5V2.4A双USB智能输出 一拖二手机平板通用汽车充电器 AP821 银色</view>
-        <view class=favo>
-          <text class="iconfont"></text>
-          <text>分享</text>
-        </view>
-      </view>
-      <view class="express">快递: 免运费</view>
-    </view>
-    <view class="promote">
-        <view>
-          <text class="name">促销</text>
-          <text class="detail">满300减30元</text>
-        </view>
-        <view class="brother">
-          <text class="name">已选</text>
-          <text class="detail gray">黑色/S/1件</text>
-        </view>
-    </view>
-    <!-- 图文介绍 -->
-    <view class="goods-detail">
-      <view class="tabs">
-        <text class="active">图文介绍</text>
-        <text>规格参数</text>
-      </view>
-      <view class="main">
-        <view>图文介绍</view>
-        <view v-show="false">商品参数</view>
-      </view>
-    </view>
-    <view class="fixed-bottom">
-      <view class="icon-text">
-        <text class="iconfont"></text>
-        <text>联系客服</text>
-      </view>
-      <view class="icon-text">
-        <text class="iconfont"></text>
-        <text>购物车</text>
-      </view>
-      <view class="btn add-cart-btn">加入购物车</view>
-      <view class="btn buy-btn">立即购买</view>
-    </view>
-  </view>
+		<swiper class="swiper" indicator-dots autoplay circular indicator-color="#ccc" indicator-active-color="#fff"
+			:key="index">
+			<swiper-item v-for="(item, index) in detail.pics" :key="item.goods_id">
+				<image  @tap='preview(index)'class="swiper-img" :src="item.pics_mid"></image>
+			</swiper-item>
+		</swiper>
+		<!-- 商品信息 -->
+		<view class="goods-info">
+			<view class="price">￥{{detail.goods_price}}</view>
+			<view class="name-favo">
+				<view class="name">{{detail.goods_name}}</view>
+				<view class=favo>
+					<text class="iconfont"></text>
+					<text>分享</text>
+				</view>
+			</view>
+			<view class="express">快递: 免运费</view>
+		</view>
+		<view class="promote">
+			<view>
+				<text class="name">促销</text>
+				<text class="detail">满300减30元</text>
+			</view>
+			<view class="brother">
+				<text class="name">已选</text>
+				<text class="detail gray">黑色/S/1件</text>
+			</view>
+		</view>
+		<!-- 图文介绍 -->
+		<view class="goods-detail">
+			<view class="tabs">
+				<text @tap="changeTab(0)" :class="{active:tabIndex===0}">图文介绍</text>
+				<text @tap="changeTab(1)"  :class="{active:tabIndex===1}">规格参数</text>
+			</view>
+			<view class="main">
+				<view v-html="detail.goods_introduce" v-show="tabIndex===0"></view>
+				<view  v-show="tabIndex===1">
+					<view  class="attr-box">
+					    <view class="tr" v-for="item in detail.attrs" :key='item.attr_id' >
+					        <view class="td">
+					          {{item.attr_name}}
+					        </view>
+					        <view class="td">
+					            {{item.attr_value}}
+					        </view>
+					    </view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="fixed-bottom">
+			<view class="icon-text">
+				<text class="iconfont icon-kefu"></text>
+				<text>联系客服</text>
+			</view> 
+			<view class="icon-text" @tap='toCart'>
+				<text class="iconfont icon-cart"></text>
+				<text>购物车</text>
+			</view>
+			<view class="btn add-cart-btn" @tap="addTocart">加入购物车</view>
+			<view class="btn buy-btn">立即购买</view>
+		</view>
+	</view>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+	import data from './detail.json'
+	export default {
+		data() {
+			return {
+				data: data,
+				detail: [],
+				tabIndex:0
+			}
+		},
+		onLoad() {
+			this.getList();
+		},
+		methods: {
+			...mapMutations(['ADD2CART']),
+			addTocart(){
+				this.ADD2CART(this.detail);
+			},
+			toCart(){
+				uni.switchTab({
+					url:'../cart/cart'
+				})
+			},
+			changeTab(tabIndex){
+				this.tabIndex=tabIndex
+			},
+			getList() {
+				uni.showLoading( )
+				setTimeout(() => {
+					this.detail = this.data.message;
+					uni.hideLoading()
+				}, 1000)
+			},
+			preview(index){
+				uni.previewImage({
+					current:index,
+					urls:this.detail.pics.map(v=>v.pics_big)
+				})
+			}
+		}
+	}
 </script>
 <style lang="less">
-.wrapper {
-  background-color: #f4f4f4;
-  padding-bottom: 98rpx;
+	.wrapper {
+		background-color: #f4f4f4;
+		padding-bottom: 98rpx;
+	}
+
+	.swiper {
+		height: 720rpx;
+	}
+// 商品特性
+.attr-box{
+	padding: 10rpx;
+	.tr{
+		border: 1rpx solid #d1d1d1;
+		display: flex;
+		.td{
+			flex:1;
+			height: 90rpx;
+			text-align: center;
+			line-height: 90rpx;
+			font-size:24rpx;
+		}
+		.td:first-child{
+			border-right: 1rpx solid #d1d1d1;
+		}
+	}
 }
+	.swiper-img {
+		width: 100%;
+		height: 720rpx;
+	}
 
-.swiper {
-  height: 720rpx;
-}
+	.goods-info {
+		padding: 40rpx 0 30rpx 20rpx;
+		background-color: #fff;
 
-.swiper-img {
-  width: 100%;
-  height: 720rpx;
-}
+		.price {
+			color: #eb4450;
+			font-size: 40rpx;
+		}
 
-.goods-info {
-  padding: 40rpx 0 30rpx 20rpx;
-  background-color: #fff;
+		.name-favo {
+			display: flex;
+			height: 78rpx;
+			margin-top: 14rpx;
 
-  .price {
-    color: #eb4450;
-    font-size: 40rpx;
-  }
+			.name {
+				color: #333;
+				flex: 1;
+				font-size: 28rpx;
+				padding-right: 78rpx;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 2; // 控制多行的行数
+				-webkit-box-orient: vertical;
+			}
 
-  .name-favo {
-    display: flex;
-    height: 78rpx;
-    margin-top: 14rpx;
+			.favo {
+				border-left: 1px solid #ddd;
+				width: 144rpx;
+				color: #999;
+				font-size: 24rpx;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				position: relative;
+			}
+		}
 
-    .name {
-      color: #333;
-      flex: 1;
-      font-size: 28rpx;
-      padding-right: 78rpx;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 2; // 控制多行的行数
-      -webkit-box-orient: vertical;
-    }
+		.express {
+			color: #999;
+			font-size: 24rpx;
+			margin-top: 20rpx;
+		}
+	}
 
-    .favo {
-      border-left: 1px solid #ddd;
-      width: 144rpx;
-      color: #999;
-      font-size: 24rpx;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
-  }
+	.promote {
+		margin-top: 20rpx;
 
-  .express {
-    color: #999;
-    font-size: 24rpx;
-    margin-top: 20rpx;
-  }
-}
+		view {
+			background-color: #fff;
+			height: 96rpx;
+			line-height: 96rpx;
+			font-size: 28rpx;
+			margin-top: 20rpx;
+			padding-left: 20rpx;
 
-.promote {
-  margin-top: 20rpx;
+			&.brother {
+				margin-top: 0;
+			}
 
-  view {
-    background-color: #fff;
-    height: 96rpx;
-    line-height: 96rpx;
-    font-size: 28rpx;
-    margin-top: 20rpx;
-    padding-left: 20rpx;
+			.name {
+				color: #404040;
+			}
 
-    &.brother {
-      margin-top: 0;
-    }
+			.detail {
+				color: #ff4055;
+				margin-left: 40rpx;
 
-    .name {
-      color: #404040;
-    }
+				&.gray {
+					color: #dfdfdf;
+				}
+			}
+		}
+	}
 
-    .detail {
-      color: #ff4055;
-      margin-left: 40rpx;
+	.goods-detail {
+		margin-top: 20rpx;
+		background-color: #fff;
 
-      &.gray {
-        color: #dfdfdf;
-      }
-    }
-  }
-}
+		.tabs {
+			display: flex;
 
-.goods-detail {
-  margin-top: 20rpx;
-  background-color: #fff;
+			text {
+				flex: 1;
+				text-align: center;
+				color: #404040;
+				font-size: 22rpx;
+				height: 100rpx;
+				line-height: 100rpx;
+				box-sizing: border-box;
 
-  .tabs {
-    display: flex;
+				&.active {
+					color: #ff4055;
+					border-bottom: 10rpx solid #ff2644;
+				}
+			}
+		}
+	}
 
-    text {
-      flex: 1;
-      text-align: center;
-      color: #404040;
-      font-size: 22rpx;
-      height: 100rpx;
-      line-height: 100rpx;
-      box-sizing: border-box;
+	.fixed-bottom {
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 98rpx;
+		display: flex;
+		background-color: #fff;
 
-      &.active {
-        color: #ff4055;
-        border-bottom: 10rpx solid #ff2644;
-      }
-    }
-  }
-}
+		.icon-text {
+			flex: 2;
+			font-size: 20rpx;
+			color: #404040;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+		}
 
-.fixed-bottom {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 98rpx;
-  display: flex;
-  background-color: #fff;
+		.btn {
+			flex: 3;
+			color: #fff;
+			text-align: center;
+			line-height: 98rpx;
 
-  .icon-text {
-    flex: 2;
-    font-size: 20rpx;
-    color: #404040;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
+			&.add-cart-btn {
+				background-color: #ffb400;
+			}
 
-  .btn {
-    flex: 3;
-    color: #fff;
-    text-align: center;
-    line-height: 98rpx;
-
-    &.add-cart-btn {
-      background-color: #ffb400;
-    }
-
-    &.buy-btn {
-      background-color: #ff2d4a;
-    }
-  }
-}
+			&.buy-btn {
+				background-color: #ff2d4a;
+			}
+		}
+	}
 </style>
